@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QR for Chocolate Surprise</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .qr-wrap{display:flex; flex-direction:column; align-items:center; gap:16px}
+    img{width:280px; height:280px}
+    input{width:100%; padding:12px; border-radius:12px; border:1px solid rgba(243,201,105,.3); background:#1a0d08; color:#f7efe8}
+  </style>
+</head>
+<body>
+  <main style="max-width:720px;margin:0 auto;padding:16px">
+    <section class="card">
+      <h1>Make a QR Code</h1>
+      <p>Paste your live URL (with params like <code>?name=Shivani&from=Manas&videos=...</code>). A QR will appear below.</p>
+      <div class="qr-wrap">
+        <input id="urlInput" placeholder="https://your-live-url" />
+        <img id="qr" alt="QR code will appear here" />
+        <a id="download" class="btn" download="birthday-qr.png">Download QR</a>
+      </div>
+    </section>
+  </main>
+  <script>
+    const input = document.getElementById('urlInput');
+    const img = document.getElementById('qr');
+    const link = document.getElementById('download');
+    const make = () => {
+      const v = input.value.trim();
+      if(!v){ img.src=''; link.removeAttribute('href'); return; }
+      const src = 'https://chart.googleapis.com/chart?cht=qr&chs=600x600&chld=M|0&chl=' + encodeURIComponent(v);
+      img.src = src;
+      link.href = src;
+    };
+    input.addEventListener('input', make);
+    input.value = window.location.href.replace(/qr\.html.*/, '');
+    make();
+  </script>
+</body>
+</html>
