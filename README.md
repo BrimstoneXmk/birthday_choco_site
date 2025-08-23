@@ -5,9 +5,6 @@ A sweet, mobile-friendly site that matches your "Shivani Chocolate" wrapper. Inc
 ## Personalize via URL
 - `name` — friend's name (e.g., Shivani)
 - `from` — your name (e.g., Manas)
-- `date` — YYYY-MM-DD (optional countdown)
-- `videos` — comma-separated mp4 or YouTube links
-  - Example: `?videos=assets/video1.mp4,https://youtu.be/dQw4w9WgXcQ`
 
 ## Add Your Videos
 Put MP4 files in `/assets` and reference them via the `videos` parameter. Two placeholders are included: `assets/video1.mp4` and `assets/video2.mp4`.
