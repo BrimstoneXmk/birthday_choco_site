@@ -104,3 +104,64 @@ footer{margin:24px 0; text-align:center; color:var(--muted)}
   .choco-grid .grid{grid-template-columns: repeat(2, 1fr)}
   .grid-photos{grid-template-columns: repeat(2, 1fr)}
 }
+
+.memory input {
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.memory button {
+  margin-top: 5px;
+}
+
+#memorySecret {
+  margin-top: 15px;
+  padding: 10px;
+  background: #fff3cd;
+  border-left: 4px solid #ff9800;
+  border-radius: 5px;
+}
+
+/* ===== Improved Readability for Unlock/Memory Sections ===== */
+.memory, .unlock {
+  background: #fffaf3;
+  color: #2d2d2d;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.memory h2, .unlock h2 {
+  color: #5a2f19; /* chocolate brown headings */
+  font-family: 'Dancing Script', cursive;
+}
+
+.memory input, .unlock input {
+  border: 2px solid #d2691e;
+  padding: 0.5rem;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.memory button, .unlock button {
+  background: linear-gradient(90deg, #f9e5a3, #d9a84f);
+  color: #2f1b0f;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+
+#memorySecret, #secretMessage {
+  margin-top: 15px;
+  padding: 12px;
+  background: #fffbe6;
+  border-left: 4px solid #d9a84f;
+  border-radius: 6px;
+  color: #2d2d2d;
+  font-weight: 500;
+}
