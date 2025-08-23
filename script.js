@@ -92,13 +92,21 @@ function loadVideo(v){
   }
 }
 
-videos.forEach((v, i)=>{
-  const b = document.createElement('button');
-  b.textContent = v.title;
-  b.addEventListener('click', ()=> loadVideo(v));
-  playlist.appendChild(b);
-  if(i===0) loadVideo(v);
-});
+if (playlist) {
+  videos.forEach((v, i)=>{
+    const b = document.createElement('button');
+    b.textContent = v.title;
+    b.addEventListener('click', ()=> loadVideo(v));
+    playlist.appendChild(b);
+    if(i===0) loadVideo(v);
+  });
+} else {
+  // If a custom ?videos= is provided but no #playlist exists,
+  // still ensure the first video loads.
+  if (videos.length && get('videos')) {
+    loadVideo(videos[0]);
+  }
+}
 
 // Share
 document.getElementById('shareBtn')?.addEventListener('click', async ()=>{
@@ -108,3 +116,32 @@ document.getElementById('shareBtn')?.addEventListener('click', async ()=>{
     else { await navigator.clipboard.writeText(shareUrl); alert('Link copied ✅'); }
   }catch(e){}
 });
+
+// Memory Unlock feature (accept minor variations like spaces/case)
+const memoryBtn = document.getElementById("memoryBtn");
+const memoryInput = document.getElementById("memoryInput");
+const memorySecret = document.getElementById("memorySecret");
+
+function normalize(s){
+  return (s || "").toLowerCase().replace(/\s+/g, "").replace(/[^a-z0-9]/g, "");
+}
+
+function tryUnlock(){
+  if (!memoryInput || !memorySecret) return;
+  const answerRaw = memoryInput.value;
+  const expected = normalize("pastry corner"); // customize here
+  if (normalize(answerRaw) === expected) {
+    memorySecret.classList.remove("hide");
+  } else {
+    alert("Nope, try again 😉");
+  }
+}
+
+if (memoryBtn) {
+  memoryBtn.addEventListener("click", tryUnlock);
+}
+if (memoryInput) {
+  memoryInput.addEventListener("keydown", (e)=>{
+    if (e.key === "Enter") tryUnlock();
+  });
+}
